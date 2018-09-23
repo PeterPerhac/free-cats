@@ -3,11 +3,17 @@ name := "Free Cats"
 version := "1.0"
 
 scalaVersion := "2.12.6"
+lazy val catsVersion = "1.4.0"
+lazy val doobieVersion = "0.5.3"
+lazy val monixVersion = "3.0.0-M3"
 
-libraryDependencies += "org.typelevel" %% "cats-core" % "1.4.0"
-libraryDependencies += "org.typelevel" %% "cats-free" % "1.4.0"
+libraryDependencies += "org.typelevel" %% "cats-core" % catsVersion
+libraryDependencies += "org.typelevel" %% "cats-free" % catsVersion
 
-libraryDependencies += "io.monix" %% "monix" % "3.0.0-M3"
+libraryDependencies += "org.tpolecat" %% "doobie-core"     % doobieVersion
+libraryDependencies += "org.tpolecat" %% "doobie-postgres" % doobieVersion
+
+libraryDependencies += "io.monix" %% "monix" % monixVersion
 
 scalacOptions ++= Seq(
   "-feature",
@@ -16,7 +22,6 @@ scalacOptions ++= Seq(
   "-language:postfixOps",
   "-deprecation",
   "-Xfatal-warnings",
-  "-Ywarn-unused:imports",
   "-Ypartial-unification"
 )
 

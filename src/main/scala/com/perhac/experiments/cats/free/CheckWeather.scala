@@ -17,7 +17,7 @@ object CheckWeather {
 
   def transactor[F[_] : Effect]: Aux[F, Unit] = Transactor.fromDriverManager[F](
     driver = "org.postgresql.Driver",
-    url = "jdbc:postgresql:generic",
+    url = "jdbc:postgresql://localhost:54321/generic",
     user = "generic",
     pass = "generic"
   )
@@ -44,7 +44,7 @@ object CheckWeather {
     override def apply[A](fa: WeatherOperation[A]): F[A] = fa match {
       case ListLocations => E.delay(iVeBeenTo)
       case WeatherForLocation(location) => E.delay {
-        iBeenEverywhereMan.find(_ == location).map(_ =>
+        iVeBeenTo.find(_ == location).map(_ =>
           WeatherInfo(location, location.length, location.length * 2))
       }
     }

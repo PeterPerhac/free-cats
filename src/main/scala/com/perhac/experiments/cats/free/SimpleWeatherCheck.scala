@@ -6,6 +6,8 @@ import cats.free.Free.liftF
 import cats.~>
 import monix.eval.Coeval
 
+import scala.io.StdIn._
+
 final case class WeatherInfo(location: String, minTemp: Double, maxTemp: Double)
 
 sealed trait WeatherOperation[T]
@@ -31,7 +33,7 @@ class DummyInterpreter[F[_]](implicit S: Sync[F]) extends (WeatherOperation ~> F
   override def apply[A](fa: WeatherOperation[A]): F[A] = fa match {
     case GetLocation => S.delay {
       println("Please enter Location:")
-      scala.io.StdIn.readLine()
+      readLine()
     }
     case QueryWeatherSource(location) => S.delay {
       WeatherInfo(location, location.length, location.length * 2)

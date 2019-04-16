@@ -3,9 +3,12 @@ name := "Free Cats"
 version := "1.0"
 
 scalaVersion := "2.12.6"
-lazy val catsVersion = "1.4.0"
+lazy val catsVersion = "1.6.0"
 lazy val doobieVersion = "0.5.3"
 lazy val monixVersion = "3.0.0-M3"
+
+
+mainClass in (Compile, run) := Some("com.perhac.experiments.cats.free.CheckWeather")
 
 libraryDependencies += "org.typelevel" %% "cats-core" % catsVersion
 libraryDependencies += "org.typelevel" %% "cats-free" % catsVersion
